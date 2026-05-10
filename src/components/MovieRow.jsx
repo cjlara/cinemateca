@@ -8,7 +8,7 @@ const sBtn = {
   fontSize:16, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0,
 };
 
-export default function MovieRow({ title, movies: initialMovies, userdata, onOpen, onTitleClick, fetchMore }) {
+export default function MovieRow({ title, movies: initialMovies, userdata, onOpen, onUpdate, onTitleClick, fetchMore }) {
   const scrollRef  = useRef();
   const loaderRef  = useRef();
   const [movies,   setMovies]   = useState(initialMovies);
@@ -78,7 +78,7 @@ export default function MovieRow({ title, movies: initialMovies, userdata, onOpe
       </div>
 
       <div ref={scrollRef} style={{ display:"flex", gap:12, overflowX:"auto", paddingBottom:6, scrollbarWidth:"none" }}>
-        {movies.map(m => <PosterCard key={m.id} movie={m} userdata={userdata} onOpen={onOpen} />)}
+        {movies.map(m => <PosterCard key={m.id} movie={m} userdata={userdata} onOpen={onOpen} onUpdate={onUpdate} />)}
 
         {/* Sentinel for infinite scroll */}
         {fetchMore && !exhausted && (
