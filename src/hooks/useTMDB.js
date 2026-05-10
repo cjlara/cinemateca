@@ -1,15 +1,20 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
-// Simple in-memory cache to avoid redundant API calls
 const cache = new Map();
 
 export function useTMDB(fetcher, deps = []) {
   const [data,    setData]    = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!!fetcher); // false if no fetcher
   const [error,   setError]   = useState(null);
   const key = deps.join("|");
 
   useEffect(() => {
+    // Don't fetch if no fetcher provided (lazy sections not yet visible)
+    if (!fetcher) {
+      setLoading(false);
+      return;
+    }
+
     let cancelled = false;
 
     if (cache.has(key)) {
