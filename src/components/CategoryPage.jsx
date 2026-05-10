@@ -3,7 +3,7 @@ import { C } from "../lib/constants.js";
 import PosterCard from "./PosterCard.jsx";
 
 // Full-screen category grid with vertical infinite scroll
-export default function CategoryPage({ title, fetchPage, userdata, onOpen, onUpdate, onClose }) {
+export default function CategoryPage({ title, fetchPage, userdata, onOpen, onClose }) {
   const [movies,   setMovies]    = useState([]);
   const [page,     setPage]      = useState(0);
   const [loading,  setLoading]   = useState(false);
@@ -65,7 +65,7 @@ export default function CategoryPage({ title, fetchPage, userdata, onOpen, onUpd
       <div style={{ padding:"20px 16px 80px", maxWidth:1360, margin:"0 auto" }}>
         <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(130px,1fr))", gap:14 }}>
           {movies.map(m => (
-            <PosterCard key={m.id} movie={m} userdata={userdata} onOpen={onOpen} onUpdate={onUpdate} />
+            <PosterCard key={m.id} movie={m} userdata={userdata} onOpen={onOpen} />
           ))}
           {/* Skeleton placeholders while loading */}
           {loading && [...Array(10)].map((_,i) => (
