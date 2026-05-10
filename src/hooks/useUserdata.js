@@ -6,7 +6,10 @@ export function useUserdata() {
 
   const updateMovie = useCallback((movieId, patch) => {
     setUserdata(prev => {
-      const next = { ...prev, [movieId]: { ...(prev[movieId] || {}), ...patch } };
+      const next = {
+        ...prev,
+        [movieId]: { ...(prev[movieId] || {}), ...patch },
+      };
       saveUserdata(next);
       return next;
     });
@@ -15,7 +18,10 @@ export function useUserdata() {
   const toggleField = useCallback((movieId, field) => {
     setUserdata(prev => {
       const current = prev[movieId] || {};
-      const next = { ...prev, [movieId]: { ...current, [field]: !current[field] } };
+      const next = {
+        ...prev,
+        [movieId]: { ...current, [field]: !current[field] },
+      };
       saveUserdata(next);
       return next;
     });
